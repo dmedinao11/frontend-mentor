@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<!-- <link rel="stylesheet" href="styles.css" /> -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link
+			rel="stylesheet"
+			href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
+		/>
+
+		<title>Frontend Mentor | Todo app</title>
+
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+	</head>
+	<body>
+		<main>
+			<header>
+				<h1>TODO</h1>
+				<img src="./images/icon-sun.svg" alt="light" />
+			</header>
+			<article class="item">
+				<span></span>
+				<input
+					type="text"
+					id=""
+					placeholder="Create a new todo..."
+					onkeyup="onAddItem(this, event)"
+				/>
+			</article>
+
+			<ul id="todoList"></ul>
+			<article class="item footer" id="listFooter">
+				<p id="itemLeft"></p>
+				<div>
+					<a id="all" onclick="onFilter(this, 'all')" class="blue active">All</a>
+					<a id="active" onclick="onFilter(this, 'active')">Active</a>
+					<a id="completed" onclick="onFilter(this, 'completed')">Completed</a>
+				</div>
+				<p onclick="onClearCompleted()">Clear Completed</p>
+			</article>
+		</main>
+		<!--
+		Todo
+
+		 Add dynamic number -
+		    Drag and drop to reorder list
+
+		<div class="attribution">
+			Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+			Coded by <a href="#">Your Name Here</a>.
+		</div>
+	-->
+	</body>
+</html>
