@@ -1,25 +1,56 @@
 export class DragController {
 	private container: HTMLElement;
-	private draggedElement: HTMLElement | undefined;
-	private positions: PositionsElements;
+	private movedElement: HTMLElement | undefined;
+	private positions: PositionsElements | undefined;
 	private line: HTMLElement | undefined;
 
 	constructor(container: HTMLElement) {
 		this.container = container;
-		const elementsList = Array.from(container.children) as HTMLElement[];
-		this.positions = new PositionsElements(elementsList);
 	}
 
 	public onDragStart(item: HTMLElement): void {
-		this.draggedElement = item;
-
-		if (!this.line) this.createLine();
+		this.updatePositions();
+		this.movedElement = item;
 	}
 
-	private createLine(): void {
-		this.line = document.createElement("li");
-		this.line.classList.add("line");
-		this.container.insertBefore(this.line, this.draggedElement as HTMLElement);
+	public onDragOver(posY: number): void {
+		const overElement = this.positions?.getElement(posY);
+
+		if (overElement != this.movedElement) {
+			this.movedElement = overElement;
+			this.updateLine();
+		}
+	}
+
+	public onDragEnd(item: HTMLElement): number | undefined {
+		this.line?.remove();
+		this.line = undefined;
+		if (this.movedElement != item) {
+			item = this.container.removeChild(item);
+
+			if (this.movedElement) this.container.insertBefore(item, this.movedElement);
+			else this.container.appendChild(item);
+
+			this.positions?.setPositions();
+			return this.positions?.getIndex(item);
+		}
+
+		this.movedElement = undefined;
+	}
+
+	private updateLine(): void {
+		if (!this.line) {
+			this.line = document.createElement("hr");
+			this.line.classList.add("line");
+		}
+
+		this.container.insertBefore(this.line, this.movedElement as HTMLElement);
+	}
+
+	private updatePositions(): void {
+		const elementsList = Array.from(this.container.children) as HTMLElement[];
+
+		this.positions = new PositionsElements(elementsList);
 	}
 }
 
@@ -53,12 +84,17 @@ class PositionsElements {
 		return foundElem ? foundElem.item : undefined;
 	}
 
+	public getIndex(item: HTMLElement): number | undefined {
+		return this.posElementsSelections?.findIndex((posElem) => posElem.item == item);
+	}
+
 	private calcReletaviPosReducer(
 		acc: ElementRelPosition[],
 		item: HTMLElement
 	): ElementRelPosition[] {
-		const { y, width } = item.getBoundingClientRect();
-		const calcPosition = y + width / 2;
+		const { y, height } = item.getBoundingClientRect();
+
+		const calcPosition = y + height / 2;
 		const position = parseFloat(calcPosition.toString()).toFixed(2);
 		acc.push({ position, item });
 		return acc;

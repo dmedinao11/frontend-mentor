@@ -116,6 +116,7 @@ export class RendererController {
 	private setDraggableAttributes(item: Element, value: boolean) {
 		item.setAttribute("draggable", value.toString());
 		item.setAttribute("ondragstart", "onDragStart(this)");
+		item.setAttribute("ondragend", "onDragEnd(this)");
 	}
 }
 

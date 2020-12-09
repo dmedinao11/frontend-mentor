@@ -1,6 +1,6 @@
 export class IdManager {
-	private storageKey: string = "id";
-	private currID: number = 0;
+	private storageKey = "id";
+	private currID = 0;
 	private static instance: IdManager;
 
 	private constructor() {

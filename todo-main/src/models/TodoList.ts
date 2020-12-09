@@ -26,6 +26,15 @@ export class TodoList {
 		this.save();
 	}
 
+	public updateOrder(id: number, settedPosition: number): void {
+		const toChangeIndex = this.items.findIndex((item) => item.id == id);
+		const [changedITem] = this.items.splice(toChangeIndex, 1);
+
+		this.items.splice(settedPosition, 0, changedITem);
+
+		this.save();
+	}
+
 	public removeCompleted(): void {
 		this.items = this.active;
 		this.save();

@@ -12,5 +12,6 @@ export enum DomItems {
 	NoItems = `
 	    <p>There are no tasks in your ToDo</p>
 	    <i class="fas fa-clipboard"></i>    
-    `
+	`,
+	ImgSrc = "./images/icon-{theme}.svg"
 }

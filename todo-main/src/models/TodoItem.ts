@@ -11,7 +11,7 @@ export class TodoItem implements ITodoItem {
 	private _content: string;
 	private _isChecked: boolean;
 
-	constructor(content: string = "", item?: ITodoItem) {
+	constructor(content = "", item?: ITodoItem) {
 		const idManager = IdManager.getInstance();
 
 		if (item) {

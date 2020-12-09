@@ -26,7 +26,12 @@
 		<main>
 			<header>
 				<h1>TODO</h1>
-				<img src="./images/icon-sun.svg" alt="light" />
+				<img
+					id="modeSwitch"
+					alt="mode"
+					onclick="onModeToggle(this)"
+					src="../images/icon-sun.svg"
+				/>
 			</header>
 			<article class="item">
 				<span></span>
@@ -38,27 +43,19 @@
 				/>
 			</article>
 
-			<ul id="todoList"></ul>
-			<article class="item footer" id="listFooter">
-				<p id="itemLeft"></p>
-				<div>
-					<a id="all" onclick="onFilter(this, 'all')" class="blue active">All</a>
-					<a id="active" onclick="onFilter(this, 'active')">Active</a>
-					<a id="completed" onclick="onFilter(this, 'completed')">Completed</a>
-				</div>
-				<p onclick="onClearCompleted()">Clear Completed</p>
-			</article>
+			<div class="container" id="container">
+				<ul id="todoList"></ul>
+				<article class="item footer" id="listFooter">
+					<p id="itemLeft"></p>
+					<div id="filter">
+						<a id="all" onclick="onFilter(this, 'all')" class="blue active">All</a>
+						<a id="active" onclick="onFilter(this, 'active')">Active</a>
+						<a id="completed" onclick="onFilter(this, 'completed')">Completed</a>
+					</div>
+					<p onclick="onClearCompleted()">Clear Completed</p>
+				</article>
+			</div>
+			<footer>Drag and drop to reorder list</footer>
 		</main>
-		<!--
-		Todo
-
-		 Add dynamic number -
-		    Drag and drop to reorder list
-
-		<div class="attribution">
-			Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-			Coded by <a href="#">Your Name Here</a>.
-		</div>
-	-->
 	</body>
 </html>
