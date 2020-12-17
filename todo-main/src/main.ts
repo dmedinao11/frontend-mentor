@@ -1,8 +1,18 @@
-import { TodoList } from "./models/TodoList";
-import { RendererController, Status } from "./controllers/Renderer";
-import { DragController } from "./controllers/Drag";
-import { ThemeManager } from "./util/ThemeManager";
+//Assets
 import "../src/styles.css";
+import "../images/icon-moon.svg";
+import "../images/icon-sun.svg";
+import "../images/icon-cross.svg";
+
+//Models
+import { TodoList } from "./models/TodoList";
+
+//Utilities
+import { ThemeManager } from "./util/ThemeManager";
+
+//Controllers
+import { DragController } from "./controllers/Drag";
+import { RendererController, Status } from "./controllers/Renderer";
 import { LeftItemsController } from "./controllers/LeftItems";
 import { MediaQueryController } from "./controllers/MediaQuery";
 
@@ -51,7 +61,7 @@ window.onload = () => {
 		const body = document.getElementsByTagName("body")[0];
 		body.classList.toggle("light");
 		const img = document.getElementById("modeSwitch") as HTMLElement;
-		img.setAttribute("src", "../images/icon-moon.svg");
+		img.setAttribute("src", "./images/icon-moon.svg");
 	}
 };
 
@@ -122,7 +132,7 @@ window.onModeToggle = (img: HTMLElement) => {
 	const body = document.getElementsByTagName("body")[0];
 	const isLightMode = body.classList.toggle("light");
 	const theme = isLightMode ? "moon" : "sun";
-	img.setAttribute("src", `../images/icon-${theme}.svg`);
+	img.setAttribute("src", `./images/icon-${theme}.svg`);
 	themeManager.saveTheme(theme);
 };
 
